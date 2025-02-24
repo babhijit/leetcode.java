@@ -1,0 +1,30 @@
+[
+  {
+    "path": "/home/",
+    "expected": "/home"
+  },
+  {
+    "path": "/home//foo/",
+    "expected": "/home/foo"
+  },
+  {
+    "path": "/home/user/Documents/../Pictures",
+    "expected": "/home/user/Pictures"
+  },
+  {
+    "path": "/../",
+    "expected": "/"
+  },
+  {
+    "path": "/.../a/../b/c/../d/./",
+    "expected": "/.../b/d"
+  },
+  {
+    "path": "/a/../../b/../c//.//",
+    "expected": "/c"
+  },
+  {
+    "path": "/home/../../..",
+    "expected": "/"
+  }
+]
