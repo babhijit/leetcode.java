@@ -1,6 +1,7 @@
 package in.treyi.string.simplify_71;
 
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 public class SimplifyPath {
 
@@ -12,11 +13,10 @@ public class SimplifyPath {
 
         var hierarcy = getDirectoryHierarchy(path);
 
-        path = String.join("/", hierarcy);
-        if (path.isEmpty() || (path.charAt(0) != '/')) {
-            path = "/" + path;
-        }
-        return path;
+        var simplifiedPath = new StringBuilder();
+        hierarcy.stream().forEach(dir -> simplifiedPath.append("/").append(dir));
+
+        return simplifiedPath.isEmpty() ? "/" : simplifiedPath.toString();
     }
 
     private Stack<String> getDirectoryHierarchy(String path) {
@@ -30,7 +30,7 @@ public class SimplifyPath {
                         hierarchy.pop();
                     }
                 }
-                case CURRENT_DIR -> {}
+                case CURRENT_DIR, "" -> {}
                 default -> hierarchy.push(dir);
             }
         }
